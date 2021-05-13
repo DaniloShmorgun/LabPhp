@@ -1,0 +1,151 @@
+#response-popup{
+    display: block;
+    background-color: unset;
+    overflow:visible;
+    position:fixed;
+    left:-9999px;
+    transition: left 1s;
+}
+
+.response-content{
+    width: 400px;
+    margin:40px auto 0 auto;
+    border: none;
+    border-radius: 25px;
+    height: auto;
+    background-color: #f1f1f1;
+    box-shadow: 0 0 10px #000;
+    padding: 10px;
+}
+
+.response-content p {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+
+#send_btn
+{
+  position:static;
+}
+
+label
+{
+
+  position:absolute;
+  font-style: italic;
+  font-family: cursive;
+  color: yellow;
+}
+
+#hint
+{
+  color: inherit;
+  background: white;
+  font-style: italic;
+  font-family: fantasy;
+}
+
+
+.pi
+p
+{
+
+  position:absolute;
+  text-decoration: underline;
+}
+li
+{
+  text-decoration: wavy;
+}
+
+h1, h2, h3,h4,h5
+{
+  position: relative;
+  height: auto;
+  color: rgb(0,53,200);
+}
+
+
+.dropbtn{
+background-color: #8c7ceb;
+color:white;
+padding:16px;
+font-size: 16px;
+border: none;
+}
+
+.drop{
+  position: relative;
+  display: inline-block;
+}
+
+.dropContent{
+  display: none;
+  position: absolute;
+  background-color: red;
+  min-width: 160px;
+  box-shadow:  0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropContent a{
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+}
+
+.dropContent a:hover {background-color: #ddd;}
+
+.drop:hover .dropContent{display: block;}
+
+drop:hover .dropbtn{background-color: #232dbd;}
+
+.bg
+{
+
+  background-image: url("w-qjCHPZbeXCQ-unsplash.jpg");
+  position:fixed;
+  z-index: -1;
+  top:0;
+  left:0; 
+  min-width:100%;
+  min-height:100%;
+}
+
+.Modal {
+    position: fixed;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background: rgba(0,0,0,0.7);
+    pointer-events: none;
+}
+.Modal:target {
+    display: flex;
+    pointer-events: auto;
+}
+.Modal_Body {
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: auto;
+    padding: 15px;
+    background: #FFF;
+}
+
+.button {
+  position: relative;
+  text-decoration: brown;
+  font-size: 18px;
+  color: black;
+  background-color: #dfa70f;
+  width: 20%;
+  text-align: center;
+}

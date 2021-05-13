@@ -1,0 +1,20 @@
+label
+{
+  font-style: italic;
+  display: block;
+  color: blue;
+  font-variant: small-caps;
+  font-family:sans-serif;
+  position:static;
+
+}
+input
+{
+  position:static;
+  display: flex;
+}
+button
+{
+  display: flex;
+  position:relative;
+}

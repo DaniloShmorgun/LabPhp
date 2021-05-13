@@ -1,0 +1,1 @@
+{"group":"FI-91","kafedra":"MMZI","faculty":"IPT","last_name":"Shmorgun","first_name":"Danilo","father":"Alex","date":"16-01-2002"}

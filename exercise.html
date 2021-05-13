@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="exercise\MyStudent.js"></script>
+    <link rel="stylesheet" href="css\exercisestyle.css">
+</head>
+  <body>
+
+       <button type="button" name="button" onclick="createStudent()">Натисніть, щоб створити студента</button>
+       <br>
+
+      <label id="name" for=""> </label>
+
+      <label id="surname"for=""> </label>
+
+      <label id="course" for=""> </label>
+
+      <label id="age" for=""> </label>
+
+       <br>
+
+
+
+    <button type="button" name="button" onclick="ChangeSurnameHandler()" >Натисніть щоб змінити прізвище</button><br>
+    <label for="">Введіть нове прізвище:</label><br>
+    <input id="input_surname"type="text" name="" value=""><br>
+    <button type="button" name="button" onclick="ChangeAgeHandler()" >Натисніть щоб змінити вік</button><br>
+        <label for="">Введіть кількість років:</label><br>
+    <input id="input_age" type="text" name="" value=""><br>
+    <button type="button" name="button" onclick="MoveToSecondCourseHandler()">Натисніть щоб перейти на курс</button><br>
+
+
+    <button type="button" name="button", onclick="randomMassive()">Створити випадковий масив з 10-тьма значеннями та знайти максимум</button>
+    <p>(Викликати випадковий набір можна лише раз за одне оновлення сторінки)</p>
+    <p id="massive"></p>
+
+    <label for="">Максимальне число: </label>
+    <output id="result"></output>
+</html>
