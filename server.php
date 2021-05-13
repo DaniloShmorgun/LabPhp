@@ -74,17 +74,7 @@ $post["faculty"] = "";
         echo json_encode($user, JSON_UNESCAPED_UNICODE);
     }
     else {
-        if($post["target"] === "age"){
-            echo $user->calcAge();
-        }
-        else if($post["target"] === "entryYear"){
-            echo $user->entry();
-        }
-        else if($post["target"] === "subNumber"){
-            echo $user->subGroup();
-        }
-        else{
-            $storage = json_decode(file_get_contents("data.txt"),true);
+        $storage = json_decode(file_get_contents("data.txt"),true);
             foreach ($storage as $storage_key => $storage_value) {
             foreach ($user as $user_key => $user_value) {
                 if (($user_key === $storage_key) && ($user_value === ""  && $storage_key !=
@@ -99,8 +89,17 @@ $post["faculty"] = "";
         fclose($fw);
        
 
-            echo json_encode($user, JSON_UNESCAPED_UNICODE);
+           
+        if($post["target"] === "age"){
+            echo $user->calcAge();
         }
+        else if($post["target"] === "entryYear"){
+            echo $user->entry();
+        }
+        else if($post["target"] === "subNumber"){
+            echo $user->subGroup();
+        }
+        echo json_encode($user, JSON_UNESCAPED_UNICODE);
     }
 
     class User {
@@ -145,7 +144,8 @@ $post["faculty"] = "";
             $birthday = new DateTime($this->date);
             $currentDate = new DateTime();
             $interval = $currentDate->diff($birthday);
-            echo $interval->y;
+            echo json_encode($interval->y);
+            exit();
         }
     }
     
@@ -178,12 +178,23 @@ $post["faculty"] = "";
             $this->faculty = $info["faculty"];
         }
         public function entry(){
+            $year = intval(date('Y'));
             $entryYear = explode('-', $this->group );
-            echo "***".$entryYear[1][0];
+            $currentLastCypherOfYear = intval(substr(date('Y'), -1));
+            $modulo = intval($entryYear[1][0]);
+            if ($currentLastCypherOfYear < $modulo) {
+                $year = (($year - 10) - ($year % 10)) + $modulo;
+            }
+            else {
+               $year = ($year - ($year % 10)) + $modulo;
+            }
+            echo strval($year);
+            exit();
         }
         public function subGroup(){
             $entryNumber = explode('-', $this->group );
-            echo $entryNumber[1][1];
+            echo $entryNumber[1];
+            exit();
         }
     }
 ?>

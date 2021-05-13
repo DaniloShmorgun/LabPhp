@@ -1,1 +1,1 @@
-{"group":"FI-91","kafedra":"MMZI","faculty":"IPT","last_name":"Shmorgun","first_name":"Danilo","father":"Alex","date":"16-01-2002"}
+{"group":"\u0424\u0406-91","kafedra":"\u0406\u0411","faculty":"\u0424\u0422\u0406","last_name":"\u0428\u043c\u043e\u0440\u0433\u0443\u043d","first_name":"\u0414\u0430\u043d\u0438\u043b\u043e","father":"\u041e\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u043e\u0432\u0438\u0447","date":"16-01-2002"}
