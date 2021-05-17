@@ -31,7 +31,7 @@ if ($hostname === "localhost") {
 
 
 
-$sql2 = "CREATE TABLE IF NOT EXISTS `users`(
+$sql2 = "CREATE TABLE IF NOT EXISTS `USERS`(
     `id`MEDIUMINT NOT NULL AUTO_INCREMENT,
     `first_name` CHAR(30) NOT NULL,
     `last_name` CHAR(30) NOT NULL,
@@ -47,25 +47,26 @@ $last_name = $post['last_name'];
 $email = $post['email'];
 $number = $post['number'];
 
-  $sql3 = "INSERT INTO `USERS`(first_name,last_name,email,number)
-  VALUES('$first_name','$last_name','$email','$number')";
+//   $sql3 = "INSERT INTO `USERS`(first_name,last_name,email,number)
+//   VALUES('$first_name','$last_name','$email','$number')";
+$sql3 = "INSERT  INTO `USERS`(first_name,last_name,email,number)
+   VALUES('$first_name','$last_name','$email','$number')";
 $conn->query($sql3);
 
-$sql4 = "SELECT * FROM USERS ORDER BY `first_name`" ;
-$result = mysqli_query($conn,$sql4);
 
 
-// $sql5 = "DELETE t1 FROM `USERS` t1
-// INNER JOIN `USERS` t2 
-// WHERE 
-//     t1.id < t2.id AND 
-//     t1.email = t2.email";
-//  $conn->query($sql5);   
+
+$sql5 = "DELETE t1 FROM `USERS` t1
+INNER JOIN `USERS` t2 
+WHERE 
+    t1.id > t2.id AND t1.email = t2.email";
+ $conn->query($sql5);   
  
-// $sql6 = "DELETE FROM `USERS` WHERE email = ''";
-//  $conn->query($sql6);  
+$sql6 = "DELETE FROM `USERS` WHERE email = ''";
+ $conn->query($sql6);  
  
-
+ $sql4 = "SELECT * FROM USERS ORDER BY `first_name`" ;
+ $result = mysqli_query($conn,$sql4);
 
 echo "<table border='1'>
 <tr>
@@ -85,6 +86,54 @@ echo "<td>" . $row['number'] . "</td>";
 echo "</tr>";
 }
 echo "</table>";
+
+$sql7 = "SELECT * FROM `USERS` ORDER BY `first_name` LIMIT 10";
+$first_10_by_name = mysqli_query($conn,$sql7);
+
+echo "<h5>ПЕРШІ 10 В АЛФАВІТНОМУ ПОРЯДКУ ЗА ІМ'ЯМ</h5>";
+
+echo "<table border='1'>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>email</th>
+<th>number</th>
+</tr>";
+
+while($row = mysqli_fetch_array($first_10_by_name))
+{
+echo "<tr>";
+echo "<td>" . $row['first_name'] . "</td>";
+echo "<td>" . $row['last_name'] . "</td>";
+echo "<td>" . $row['email'] . "</td>";
+echo "<td>" . $row['number'] . "</td>";
+echo "</tr>";
+} 
+echo "</table>";
+
+
+$sql8 = "SELECT u2.first_name, u2.last_name,
+ u.first_name, u.last_name FROM `USERS2` AS u2
+ LEFT JOIN `USERS` AS u ON u2.last_name = u.last_name ";
+ $multiple_table_query = mysqli_query($conn,$sql8);
+
+echo "<h5>2 ЗАПИТИ З РІЗНИХ ТАБЛИЦЬ (ШУКАВ ПО СХОЖИМ ІМЕНАМ В 2 ТАБИЛЦЯХ)</h5>";
+
+echo "<table border='1'>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+</tr>";
+
+while($row = mysqli_fetch_array($multiple_table_query))
+{
+echo "<tr>";
+echo "<td>" . $row['first_name'] . "</td>";
+echo "<td>" . $row['last_name'] . "</td>";
+echo "</tr>";
+} 
+echo "</table>";
+
 
 
 mysqli_close($conn);
