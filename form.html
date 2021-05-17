@@ -19,6 +19,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
 <script src="js\delete.js"></script>
 <script type="module" src="js\request-send.js" charset="utf-8"></script>
+<script type="module" src="js\jQueryValidation.js"></script>
 </head>
 
 <body class='bg'>
@@ -60,7 +61,7 @@
     <p>Ваш емейл:<br> <input type="email" placeholder="Емейл" name="email" ></p>
     <p>Пароль:<br> <input type="password" placeholder="Пароль" name="password"></p>
     <p>Номер телефону:<br> <input type="tel" placeholder="Номер" name="number" ></p>
-    <input id="send_btn"type="Submit" value="Відправити">
+    <button id="send_btn"type="Submit" value="Відправити" name="send">Відправити </button>
     <br>
     <br>
   </div>
@@ -69,7 +70,7 @@
 
   </section>
  
- <!-- <button onclick="delete_table()" , value = "delete">УДАЛИТЬ ТАБЛИЦУ</button> -->
+ <button onclick="delete_table()" , value = "delete" name="delete" type="button">УДАЛИТЬ ТАБЛИЦУ</button>
 
 
   <div id="table" class ="table">
@@ -78,7 +79,7 @@
 
 
 
-<script type="module" src="js\jQueryValidation.js"></script>
+
 
 <script src="js\student.js" charset="utf-8"></script>
 </body>

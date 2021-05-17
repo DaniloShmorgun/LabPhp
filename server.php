@@ -16,20 +16,20 @@ if(!$conn){
 }
 
 
-// if (isset($post["delete_table"])) {
-//     $sql7 = "TRUNCATE TABLE `USERS`";
-//  $conn->query($sql7);  
-// exit();
-// }
+if (isset($post["delete_table"])) {
+    $sql7 = "TRUNCATE TABLE `USERS`";
+ $conn->query($sql7);  
+exit();
+}
+
+$db = mysqli_select_db($conn, "USERS");
+
+if ($hostname === "localhost") {
+    $sql1 = "CREATE DATABASE `USERS`";
+    $conn->query($sql1);
+}
 
 
-
-// if ($servername === "localhost") {
-//     $sql1 = "CREATE DATABASE `USERS`";
-//     $conn->query($sql1);
-// }
-
-// $db = mysqli_select_db($conn, "USERS");
 
 $sql2 = "CREATE TABLE IF NOT EXISTS `users`(
     `id`MEDIUMINT NOT NULL AUTO_INCREMENT,

@@ -59,10 +59,10 @@ $(function(){
          pattern:"Будь ласка, введіть номер у </br> вигляді 12 цифр"
            }
      },
-    submitHandler: function (form = "#") {
+    submitHandler: function (form) {
       
       formJSSend(form)
-  
+     
 
     
 }

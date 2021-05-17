@@ -7,7 +7,6 @@ function formJSSend(student_form) {
     request.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
 
     const formData = new FormData(student_form)
-
     const data_obj = {}
 
     formData.forEach((value, key) => {
