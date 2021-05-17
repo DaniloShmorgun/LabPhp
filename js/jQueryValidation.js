@@ -18,15 +18,16 @@ $(function(){
        last_name:
        {
          required:true,
-
+         
          pattern: /^[а-яА-ЯA-Za-zіІЇїЄє]+$/
        },
        number:
        {
 
         required:true,
-        pattern: /^\d{12}/
-
+        digits:true,
+        pattern: /^\d{12}$/,
+        rangelength: [12, 12],
 
        },
        password:
