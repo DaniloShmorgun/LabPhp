@@ -2,22 +2,25 @@
 
 $post = json_decode(file_get_contents('php://input'), true);
 
-$servername = "localhost";
-$username = "root";
-$password = "root";
+$hostname = "us-cdbr-east-03.cleardb.com";
+$username = "bbc93c3fea8b85";
+$password = "b3e30e86";
+$db =  "heroku_6ec5d5a4394527d";
 
-$conn = mysqli_connect($servername, $username,$password);
+$conn = mysqli_connect($hostname, $username,$password,$db);
 
 if(!$conn){
     die("Connection faile: " .mysqli_connect_error());
 }
 
-if ($servername === "localhost") {
-    $sql1 = "CREATE DATABASE `USERS`";
-    $conn->query($sql1);
-}
 
-$db = mysqli_select_db($conn, "USERS");
+
+// if ($servername === "localhost") {
+//     $sql1 = "CREATE DATABASE `USERS`";
+//     $conn->query($sql1);
+// }
+
+// $db = mysqli_select_db($conn, "USERS");
 
 $sql2 = "CREATE TABLE IF NOT EXISTS `users`(
     `id`MEDIUMINT NOT NULL AUTO_INCREMENT,
