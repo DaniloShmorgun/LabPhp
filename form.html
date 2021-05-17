@@ -17,9 +17,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
-
-
-
+<script src="js\delete.js"></script>
+<script type="module" src="js\request-send.js" charset="utf-8"></script>
 </head>
 
 <body class='bg'>
@@ -70,22 +69,17 @@
 
   </section>
  
+ <!-- <button onclick="delete_table()" , value = "delete">УДАЛИТЬ ТАБЛИЦУ</button> -->
 
-  <table>   
+
+  <div id="table" class ="table">
      
-  </table>
- 
-
-  <div class="response">
-      <div id="response-popup">
-          <div class="response-content">
-
-          </div>
-      </div>
   </div>
 
+
+
 <script type="module" src="js\jQueryValidation.js"></script>
-<script type="module" src="js\request-send.js" charset="utf-8"></script>
+
 <script src="js\student.js" charset="utf-8"></script>
 </body>
 </html>

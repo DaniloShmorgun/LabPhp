@@ -25,7 +25,10 @@
     display: block;
 }
 
-
+table{
+  background-color: aquamarine;
+  
+}
 #send_btn
 {
   position:static;

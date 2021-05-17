@@ -2,6 +2,8 @@
 
 $post = json_decode(file_get_contents('php://input'), true);
 
+
+
 $hostname = "us-cdbr-east-03.cleardb.com";
 $username = "bbc93c3fea8b85";
 $password = "b3e30e86";
@@ -12,6 +14,13 @@ $conn = mysqli_connect($hostname, $username,$password,$db);
 if(!$conn){
     die("Connection faile: " .mysqli_connect_error());
 }
+
+
+// if (isset($post["delete_table"])) {
+//     $sql7 = "TRUNCATE TABLE `USERS`";
+//  $conn->query($sql7);  
+// exit();
+// }
 
 
 
@@ -46,16 +55,18 @@ $sql4 = "SELECT * FROM USERS ORDER BY `first_name`" ;
 $result = mysqli_query($conn,$sql4);
 
 
-$sql5 = "DELETE t1 FROM `USERS` t1
-INNER JOIN `USERS` t2 
-WHERE 
-    t1.id < t2.id AND 
-    t1.email = t2.email";
- $conn->query($sql5);   
+// $sql5 = "DELETE t1 FROM `USERS` t1
+// INNER JOIN `USERS` t2 
+// WHERE 
+//     t1.id < t2.id AND 
+//     t1.email = t2.email";
+//  $conn->query($sql5);   
  
-$sql6 = "DELETE FROM `USERS` WHERE email = ''";
- $conn->query($sql6);  
+// $sql6 = "DELETE FROM `USERS` WHERE email = ''";
+//  $conn->query($sql6);  
  
+
+
 echo "<table border='1'>
 <tr>
 <th>Firstname</th>

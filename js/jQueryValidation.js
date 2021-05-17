@@ -1,4 +1,4 @@
-import {formJSSend, closePopup,openPopup} from './request-send.js';
+import {formJSSend} from './request-send.js';
 
 
 
@@ -59,10 +59,11 @@ $(function(){
          pattern:"Будь ласка, введіть номер у </br> вигляді 12 цифр"
            }
      },
-    submitHandler: function (form) {
+    submitHandler: function (form = "#") {
+      
+      formJSSend(form)
+  
 
-    formJSSend(form)
-    openPopup('#response-popup')
     
 }
 
