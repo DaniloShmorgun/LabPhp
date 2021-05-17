@@ -1,202 +1,81 @@
 <?php
 
-
 $post = json_decode(file_get_contents('php://input'), true);
 
+$servername = "localhost";
+$username = "root";
+$password = "root";
 
+$conn = mysqli_connect($servername, $username,$password);
 
-
-
-if ($post["first_name"] == null) {
-    $post["first_name"] = "";
-
-}
-if ($post["last_name"] == null) {
-    $post["last_name"] = "";
-
-}
-if (!(array_key_exists("getOrSet", $post))) {
-    $post["getOrSet"] = "";
-}
-if (!(array_key_exists("target", $post))) {
-    $post["target"] = "";
+if(!$conn){
+    die("Connection faile: " .mysqli_connect_error());
 }
 
-$post["kafedra"] = "";
-$post["date"] = "";
-$post["group"] = "";
-$post["father"] = "";
-$post["faculty"] = "";
+if ($servername === "localhost") {
+    $sql1 = "CREATE DATABASE `USERS`";
+    $conn->query($sql1);
+}
 
+$db = mysqli_select_db($conn, "USERS");
 
-    $user = new Student($post);
+$sql2 = "CREATE TABLE IF NOT EXISTS `users`(
+    `id`MEDIUMINT NOT NULL AUTO_INCREMENT,
+    `first_name` CHAR(30) NOT NULL,
+    `last_name` CHAR(30) NOT NULL,
+    `email` CHAR(30) NOT NULL,
+    `number` CHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+)";
+ $conn->query($sql2);
  
-    if ($post["getOrSet"] === "set"){
-        if ($post["target"] === "first_name"){
-            $user->setfirst_name($post["value"]);
-        }
-        else if ($post["target"] === "last_name"){
-            $user->setlast_name($post["value"]);
-        }
-        else if ($post["target"] === "father"){
-            $user->setFather($post["value"]);
-        }
-        else if ($post["target"] === "date"){
-            $user->setDate($post["value"]);
-        }
-        else if ($post["target"] === "group"){
-            $user->setGroup($post["value"]);
-        }
-        else if ($post["target"] === "kafedra"){
-            $user->setKafedra($post["value"]);
-        }
-        else if ($post["target"] === "faculty"){
-            $user->setFaculty($post["value"]);
-        }
 
-        $storage = json_decode(file_get_contents("data.txt"),true);
-        
-        
-        
-        foreach ($storage as $storage_key => $storage_value) {
-            foreach ($user as $user_key => $user_value) {
-                if (($user_key === $storage_key) && ($user_value === ""  && $storage_key !=
-                $post["target"]))  {
-                    $user->$user_key = $storage_value;
-                }
-            }
-        }
-        
-        $fw = fopen('data.txt','w+');
-        fwrite($fw, json_encode($user));
-        fclose($fw);
-       
-        echo json_encode($user, JSON_UNESCAPED_UNICODE);
-    }
-    else {
-        $storage = json_decode(file_get_contents("data.txt"),true);
-            foreach ($storage as $storage_key => $storage_value) {
-            foreach ($user as $user_key => $user_value) {
-                if (($user_key === $storage_key) && ($user_value === ""  && $storage_key !=
-                $post["target"]))  {
-                    $user->$user_key = $storage_value;
-                }
-            }
-        }
-        
-        $fw = fopen('data.txt','w+');
-        fwrite($fw, json_encode($user));
-        fclose($fw);
-       
+$first_name = $post['first_name'];
+$last_name = $post['last_name'];
+$email = $post['email'];
+$number = $post['number'];
 
-           
-        if($post["target"] === "age"){
-            echo $user->calcAge();
-        }
-        else if($post["target"] === "entryYear"){
-            echo $user->entry();
-        }
-        else if($post["target"] === "subNumber"){
-            echo $user->subGroup();
-        }
-        echo json_encode($user, JSON_UNESCAPED_UNICODE);
-    }
+  $sql3 = "INSERT INTO `USERS`(first_name,last_name,email,number)
+  VALUES('$first_name','$last_name','$email','$number')";
+$conn->query($sql3);
 
-    class User {
-        public $last_name;
-        public $first_name;
-        public $father;
-        public $date;
-        public function setfirst_name($newValue){
-            $this->first_name = $newValue;
-        }
-        public function setlast_name($newValue){
-            $this->last_name = $newValue;
-        }
-        public function setFather($newValue){
-            $this->father = $newValue;
-        }
-        public function setDate($newValue){
-            $this->date = $newValue;
-        }
-        public function getfirst_name(){
-            echo $this->first_name;
-        }
-        public function getlast_name(){
-            echo $this->last_name;
-        }
-        public function getFather(){
-            echo $this->father;
-        }
-        public function getDate(){
-            echo $this->date;
-        }
-        public function __construct($info){
-        
-                $this->last_name = $info["last_name"];
-                $this->first_name = $info["first_name"];
-                $this->father = $info["father"];
-                $this->date = $info["date"];
-            
-            
-        }
-        public function calcAge(){
-            $birthday = new DateTime($this->date);
-            $currentDate = new DateTime();
-            $interval = $currentDate->diff($birthday);
-            echo json_encode($interval->y);
-            exit();
-        }
-    }
-    
-    class Student extends User{
-        public $group;
-        public $kafedra;
-        public $faculty;
-        public function setGroup($newValue){
-            $this->group = $newValue;
-        }
-        public function getGroup(){
-            echo $this->group;
-        }
-        public function setKafedra($newValue){
-            $this->kafedra = $newValue;
-        }
-        public function getKafedra(){
-            echo $this->kafedra;
-        }
-        public function setFaculty($newValue){
-            $this->faculty = $newValue;
-        }
-        public function getFaculty(){
-            echo $this->faculty;
-        }
-        public function __construct($info){
-            parent::__construct($info);
-            $this->group = $info["group"];
-            $this->kafedra = $info["kafedra"];
-            $this->faculty = $info["faculty"];
-        }
-        public function entry(){
-            $year = intval(date('Y'));
-            $entryYear = explode('-', $this->group );
-            $currentLastCypherOfYear = intval(substr(date('Y'), -1));
-            $modulo = intval($entryYear[1][0]);
-            if ($currentLastCypherOfYear < $modulo) {
-                $year = (($year - 10) - ($year % 10)) + $modulo;
-            }
-            else {
-               $year = ($year - ($year % 10)) + $modulo;
-            }
-            echo strval($year);
-            exit();
-        }
-        public function subGroup(){
-            $entryNumber = explode('-', $this->group );
-            echo $entryNumber[1];
-            exit();
-        }
-    }
+$sql4 = "SELECT * FROM USERS ORDER BY `first_name`" ;
+$result = mysqli_query($conn,$sql4);
+
+
+$sql5 = "DELETE t1 FROM `USERS` t1
+INNER JOIN `USERS` t2 
+WHERE 
+    t1.id < t2.id AND 
+    t1.email = t2.email";
+ $conn->query($sql5);   
+ 
+$sql6 = "DELETE FROM `USERS` WHERE email = ''";
+ $conn->query($sql6);  
+ 
+echo "<table border='1'>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>email</th>
+<th>number</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result))
+{
+echo "<tr>";
+echo "<td>" . $row['first_name'] . "</td>";
+echo "<td>" . $row['last_name'] . "</td>";
+echo "<td>" . $row['email'] . "</td>";
+echo "<td>" . $row['number'] . "</td>";
+echo "</tr>";
+}
+echo "</table>";
+
+
+mysqli_close($conn);
+// echo json_encode($post, JSON_UNESCAPED_UNICODE);
+
 ?>
 
 

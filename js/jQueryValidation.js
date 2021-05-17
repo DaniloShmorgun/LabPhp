@@ -1,6 +1,6 @@
-import {formJSSend, formJQuerySend,closePopup,openPopup} from './request-send.js';
+import {formJSSend, closePopup,openPopup} from './request-send.js';
 
-let person = {}
+
 
 $(function(){
   $('#My_Form').validate({
@@ -59,14 +59,8 @@ $(function(){
            }
      },
     submitHandler: function (form) {
-    const chooser = prompt('Enter "jq" if you want jQuery_send, enter "js" if you want JavaScript_send')
 
-    if (chooser === 'jq') {
-        person = formJQuerySend(form)
-    }
-    else{
-        person = formJSSend(form)
-    }
+    formJSSend(form)
     openPopup('#response-popup')
     
 }
