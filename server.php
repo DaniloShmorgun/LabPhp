@@ -53,6 +53,10 @@ $sql3 = "INSERT  INTO `USERS`(first_name,last_name,email,number)
    VALUES('$first_name','$last_name','$email','$number')";
 $conn->query($sql3);
 
+$sql9 = "DELETE FROM `USERS2` WHERE first_name = ''";
+ $conn->query($sql9);  
+ $sql10 = "DELETE FROM `USERS2` WHERE last_name = ''";
+ $conn->query($sql10);
 
 
 
@@ -65,6 +69,7 @@ WHERE
 $sql6 = "DELETE FROM `USERS` WHERE email = ''";
  $conn->query($sql6);  
  
+
  $sql4 = "SELECT * FROM USERS ORDER BY `first_name`" ;
  $result = mysqli_query($conn,$sql4);
 
@@ -114,7 +119,7 @@ echo "</table>";
 
 $sql8 = "SELECT u2.first_name, u2.last_name,
  u.first_name, u.last_name FROM `USERS2` AS u2
- LEFT JOIN `USERS` AS u ON u2.last_name = u.last_name ";
+ LEFT JOIN `USERS` AS u ON u2.id = u.id";
  $multiple_table_query = mysqli_query($conn,$sql8);
 
 echo "<h5>2 ЗАПИТИ З РІЗНИХ ТАБЛИЦЬ (ШУКАВ ПО СХОЖИМ ІМЕНАМ В 2 ТАБИЛЦЯХ)</h5>";
@@ -127,10 +132,13 @@ echo "<table border='1'>
 
 while($row = mysqli_fetch_array($multiple_table_query))
 {
-echo "<tr>";
+    if ($row['first_name'] != '') {
+        echo "<tr>";
 echo "<td>" . $row['first_name'] . "</td>";
 echo "<td>" . $row['last_name'] . "</td>";
 echo "</tr>";
+    }
+
 } 
 echo "</table>";
 

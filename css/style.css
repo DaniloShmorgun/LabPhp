@@ -1,3 +1,4 @@
+
 #response-popup{
     display: block;
     background-color: unset;
@@ -27,11 +28,14 @@
 
 table{
   background-color: aquamarine;
+
+ 
   
 }
 #send_btn
 {
   position:static;
+
 }
 
 label
@@ -111,16 +115,17 @@ drop:hover .dropbtn{background-color: #232dbd;}
 {
 
   background-image: url("w-qjCHPZbeXCQ-unsplash.jpg");
-  position:fixed;
+  /* position: fixed; */
   z-index: -1;
   top:0;
   left:0; 
   min-width:100%;
   min-height:100%;
+  overflow: scroll;
 }
 
 .Modal {
-    position: fixed;
+    /* position: fixed; */
     display: none;
     top: 0;
     right: 0;
