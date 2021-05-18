@@ -19,8 +19,11 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
 <script src="js\delete.js"></script>
 <script src="js\create_table.js"></script>
+<script src="js\show_table.js"></script>
+<script src="js\count.js"></script>
 <script type="module" src="js\request-send.js" charset="utf-8"></script>
 <script type="module" src="js\jQueryValidation.js"></script>
+
 </head>
 
 <body class='bg' scroll="yes">
@@ -71,9 +74,12 @@
 
   </section>
  
- <button onclick="delete_table()" , value = "delete" name="delete" type="button">УДАЛИТЬ ТАБЛИЦУ</button>
- <button onclick="create_table()" , value = "create" name="delete" type="button">ПОКАЗАТИ ТАБЛИЦЮ</button>
+ <button onclick="delete_table()" , value = "delete" name="delete" type="button">ВИДАЛИТИ ТАБЛИЦУ</button>
+ <button onclick="create_table()" , value = "create" name="delete" type="button">ПЕРШІ 10 ЗНАЧЕНЬ ВІДСОРТОВАНІ ЗА ID</button>
+ <button onclick="show_table()" , value = "create" name="delete" type="button">ВИВЕСТИ ТАБЛИЦЮ</button>
+ <button onclick="count()" , value = "create" name="delete" type="button">КІЛЬКІСТЬ ЗНАЧЕНЬ "Данило" ДЛЯ ІМЕН</button>
 
+ 
   <div id="table" class ="table">
      
   </div>
