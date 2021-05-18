@@ -22,6 +22,32 @@ if (isset($post["delete_table"])) {
 exit();
 }
 
+if (isset($post["create_table"])) {
+    $sql11 = "SELECT * FROM USERS ORDER BY `first_name`" ;
+    $result = mysqli_query($conn,$sql11);
+   
+   echo "<table border='1'>
+   <tr>
+   <th>Firstname</th>
+   <th>Lastname</th>
+   <th>email</th>
+   <th>number</th>
+   </tr>";
+   
+   while($row = mysqli_fetch_array($result))
+   {
+   echo "<tr>";
+   echo "<td>" . $row['first_name'] . "</td>";
+   echo "<td>" . $row['last_name'] . "</td>";
+   echo "<td>" . $row['email'] . "</td>";
+   echo "<td>" . $row['number'] . "</td>";
+   echo "</tr>";
+   }
+   echo "</table>"; 
+exit();
+}
+
+
 $db = mysqli_select_db($conn, "USERS");
 
 if ($hostname === "localhost") {
@@ -63,7 +89,10 @@ $sql9 = "DELETE FROM `USERS2` WHERE first_name = ''";
 $sql5 = "DELETE t1 FROM `USERS` t1
 INNER JOIN `USERS` t2 
 WHERE 
-    t1.id > t2.id AND t1.email = t2.email";
+   t1.id < t2.id AND t1.first_name = t2.first_name AND 
+   t1.email = t2.email AND  
+   t1.last_name = t2.last_name AND  
+   t1.number= t2.number";
  $conn->query($sql5);   
  
 $sql6 = "DELETE FROM `USERS` WHERE email = ''";
