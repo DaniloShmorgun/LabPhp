@@ -42,7 +42,7 @@ if (isset($post["count"])) {
         $sum += intval($row[1]);
     
     }
-     echo "<h4> Всього кількість полів: $sum </h4>"; 
+     echo "<h4> Всього кількість рядків: $sum </h4>"; 
      exit();
 }
     
