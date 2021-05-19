@@ -40,15 +40,6 @@ if (isset($post["count"])) {
     while($row = mysqli_fetch_array($result5))
     {
         $sum += intval($row[1]);
-        if ($row["first_name"] === "Данило") {
-            
-            if ($row[1] === '1') {
-                echo "<h4>  $row[1]  Однакове значення first_name: 'Данило' знайдено в таблиці </h4>";
-            }
-            else{
-                echo "<h4>  $row[1]  Однакових значень first_name: 'Данило' знайдено в таблиці </h4>";
-            }   
-        }
     
     }
      echo "<h4> Всього кількість полів: $sum </h4>"; 
