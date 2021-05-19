@@ -33,16 +33,30 @@ exit();
 // SELECT StudentMarks, count(*) as SameValue from RowWithSameValue GROUP BY StudentMarks;
 
 if (isset($post["count"])) {
+    
     $sql20 = "SELECT first_name, count(*) as SameName FROM `USERS` GROUP BY first_name";
     $result5 = mysqli_query($conn,$sql20);
+    $sum = 0;
     while($row = mysqli_fetch_array($result5))
     {
-    echo "<h4> . $row[1] . 'Однакових `Данила` в таблиці </h4>";
-    }
+        $sum += intval($row[1]);
+        if ($row["first_name"] === "Данило") {
+            
+            if ($row[1] === '1') {
+                echo "<h4>  $row[1]  Однакове значення first_name: 'Данило' знайдено в таблиці </h4>";
+            }
+            else{
+                echo "<h4>  $row[1]  Однакових значень first_name: 'Данило' знайдено в таблиці </h4>";
+            }   
+        }
     
- $conn->query($sql20);  
-exit();
+    }
+     echo "<h4> Всього кількість полів: $sum </h4>"; 
+     exit();
 }
+    
+
+
 
 if (isset($post["create_table"])) {
     $sql11 = "SELECT * FROM USERS ORDER BY id LIMIT 10" ;
